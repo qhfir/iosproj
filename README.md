@@ -1,2 +1,2 @@
 # iosproj
-just tes
+just test
