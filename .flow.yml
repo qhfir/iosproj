@@ -7,7 +7,9 @@ flow:
     steps:
      - name: step1
        isAllowFailure: false
-       script: "echo 1"
+       script: | 
+         echo 1
+         sleep 10
 
      - name: step2
        isAllowFailure: false
