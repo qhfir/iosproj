@@ -1,4 +1,4 @@
-flows:
+flow:
   - envs:
      IOS_SCHEME: "newscheme"
      IOS_CONFIGURATION: "Release"
