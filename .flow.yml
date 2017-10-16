@@ -1,16 +1,23 @@
-flow:
-  - script: "echo 'hello world'"
-    envs:
-      FLOW_WORKSPACE: "echo hello"
-      FLOW_VERSION: "echo version"
-
+flows:
+  - envs:
+     IOS_SCHEME: "newscheme"
+     IOS_CONFIGURATION: "Release"
+     IOS_EXPORT_METHOD: "ad-hoc"
+     IOS_OUTPUT_DIR: "./ipa_dir"
+     
     steps:
-     - name: step1
-       isAllowFailure: false
-       script: | 
-         echo 1
-         sleep 10
-
-     - name: step2
-       isAllowFailure: false
-       script: "echo 2"
+      - name: Git Clone
+        scripts: |
+          git clone ${FLOW_GIT_URL}
+      
+      - name: Build
+        scripts: |
+          fastlane gym --scheme ${IOS_SCHEME} --configuration ${IOS_CONFIGURATION} --export_method ${IOS_EXPORT_METHOD} --output_directory ${IOS_OUTPUT_DIR}
+      
+      - name: Print ipa
+        scripts: |
+          array=$(find ${IOS_OUTPUT_DIR} -name *.apk -o -name *.ipa 2>&1)
+          for file in ${array[@]}
+          do
+            echo $file 
+          done
