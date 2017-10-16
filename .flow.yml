@@ -1,10 +1,10 @@
-
 flow:
   - envs:
      IOS_SCHEME: "newscheme"
      IOS_CONFIGURATION: "Release"
      IOS_EXPORT_METHOD: "ad-hoc"
      IOS_OUTPUT_DIR: "./ipa_dir"
+	   IOS_PROJECT_NAME: "iosproj"
      
     steps:
       - name: Git Clone
@@ -13,10 +13,12 @@ flow:
       
       - name: Build
         script: |
+		  cd ${IOS_PROJECT_NAME}
           fastlane gym --scheme ${IOS_SCHEME} --configuration ${IOS_CONFIGURATION} --export_method ${IOS_EXPORT_METHOD} --output_directory ${IOS_OUTPUT_DIR}
       
       - name: Print ipa
         script: |
+		  cd ${IOS_PROJECT_NAME}
           array=$(find ${IOS_OUTPUT_DIR} -name *.apk -o -name *.ipa 2>&1)
           for file in ${array[@]}
           do
