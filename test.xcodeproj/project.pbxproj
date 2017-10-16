@@ -360,7 +360,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qinhao.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c116d75e-51dc-4398-a46f-3eba8c984b64";
+				PROVISIONING_PROFILE = "c9e243c3-51d6-4774-9198-ecf8f6d65023";
 				PROVISIONING_PROFILE_SPECIFIER = "iOS Team Provisioning Profile: com.qinhao.test";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -377,7 +377,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qinhao.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c116d75e-51dc-4398-a46f-3eba8c984b64";
+				PROVISIONING_PROFILE = "c9e243c3-51d6-4774-9198-ecf8f6d65023";
 				PROVISIONING_PROFILE_SPECIFIER = "iOS Team Provisioning Profile: com.qinhao.test";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
