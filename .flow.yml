@@ -10,7 +10,7 @@ flow:
       - name: Git Clone
         script: |
           set +e
-          rm -r ${FLOW_GIT_URL}
+          rm -r ${IOS_PROJECT_NAME}
           set -e
           git clone ${FLOW_GIT_URL}
       
