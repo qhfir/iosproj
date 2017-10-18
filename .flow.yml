@@ -18,7 +18,7 @@
  
 flow:
   - envs:
-     IOS_PROJECT_NAME: "test"
+     IOS_PROJECT_NAME: "iosproj"
      IOS_SCHEME: "newscheme"
      IOS_EXPORT_METHOD: "development"
      IOS_IPA_DIR: "./ipa_dir"
