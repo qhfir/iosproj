@@ -42,3 +42,8 @@ flow:
           do
             echo $file 
           done
+
+      - name: UnitTest
+        script: |
+          cd ${IOS_PROJECT_NAME}
+          fastlane scan --configuration "Release" --scheme "newscheme" --device "iPhone 6" --clean
