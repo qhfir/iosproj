@@ -1,28 +1,43 @@
+# The template used to build iOS project via fastlane
+#
+# Pre-requirements:
+#   - Install fastlane in flow ci agent: https://docs.fastlane.tools/getting-started/ios/setup/
+#
+#   - Import iOS project required .provisionprofile and .p12 files to agent
+#
+#   - Setup project name
+#     - IOS_PROJECT_NAME: your project name
+#
+#   - Setup iOS build parameter:
+#     - IOS_SCHEME: project scheme name
+#     - IOS_EXPORT_METHOD: app-store, ad-hoc, package, enterprise, development, developer-id
+#     - IOS_IPA_DIR: the output ipa dir
+# 
+# Import to your project:
+#   - Rename ios.flow.yml to .flow.yml and save to project root directory
+ 
 flow:
   - envs:
+     IOS_PROJECT_NAME: "test"
      IOS_SCHEME: "newscheme"
-     IOS_CONFIGURATION: "Release"
-     IOS_EXPORT_METHOD: "ad-hoc"
-     IOS_OUTPUT_DIR: "./ipa_dir"
-     IOS_PROJECT_NAME: "iosproj"
+     IOS_EXPORT_METHOD: "development"
+     IOS_IPA_DIR: "./ipa_dir"
      
     steps:
       - name: Git Clone
         script: |
-          set +e
-          rm -r ${FLOW_GIT_URL}
-          set -e
-          git clone ${FLOW_GIT_URL}
+          rm -r -f ${IOS_PROJECT_NAME}
+          git clone ${FLOW_GIT_URL} ${IOS_PROJECT_NAME}
       
       - name: Build
         script: |
           cd ${IOS_PROJECT_NAME}
-          fastlane gym --scheme ${IOS_SCHEME} --configuration ${IOS_CONFIGURATION} --export_method ${IOS_EXPORT_METHOD} --output_directory ${IOS_OUTPUT_DIR}
+          fastlane gym --scheme ${IOS_SCHEME} --export_method ${IOS_EXPORT_METHOD} --output_directory ${IOS_IPA_DIR}
       
-      - name: Print ipa
+      - name: Get IPA
         script: |
           cd ${IOS_PROJECT_NAME}
-          array=$(find ${IOS_OUTPUT_DIR} -name *.apk -o -name *.ipa 2>&1)
+          array=$(find ${IOS_IPA_DIR} -name *.ipa 2>&1)
           for file in ${array[@]}
           do
             echo $file 
