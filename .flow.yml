@@ -21,6 +21,7 @@ flow:
      IOS_PROJECT_NAME: "iosproj"
      IOS_SCHEME: "newscheme"
      IOS_EXPORT_METHOD: "development"
+     IOS_CONFIGURATION: "Release"
      IOS_IPA_DIR: "./ipa_dir"
      
     steps:
@@ -46,4 +47,5 @@ flow:
       - name: UnitTest
         script: |
           cd ${IOS_PROJECT_NAME}
-          fastlane scan --configuration "Release" --scheme "newscheme" --device "iPhone 6" --clean
+          fastlane scan --configuration ${IOS_CONFIGURATION} --scheme ${IOS_SCHEME} --device "iPhone 6" --clean
+
