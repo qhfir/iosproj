@@ -25,17 +25,17 @@ flow:
      IOS_IPA_DIR: "./ipa_dir"
      
     steps:
-      - name: Git Clone
+      - name: Git 仓库克隆
         script: |
           rm -r -f ${IOS_PROJECT_NAME}
           git clone ${FLOW_GIT_URL} ${IOS_PROJECT_NAME}
       
-      - name: Build
+      - name: 编译打包
         script: |
           cd ${IOS_PROJECT_NAME}
           fastlane gym --scheme ${IOS_SCHEME} --export_method ${IOS_EXPORT_METHOD} --output_directory ${IOS_IPA_DIR}
       
-      - name: Get IPA
+      - name: 获取 IPA 包
         script: |
           cd ${IOS_PROJECT_NAME}
           array=$(find ${IOS_IPA_DIR} -name *.ipa 2>&1)
@@ -44,7 +44,7 @@ flow:
             echo $file 
           done
 
-      - name: UnitTest
+      - name: 单元测试
         script: |
           cd ${IOS_PROJECT_NAME}
           fastlane scan --configuration ${IOS_CONFIGURATION} --scheme ${IOS_SCHEME} --device "iPhone 6" --clean
