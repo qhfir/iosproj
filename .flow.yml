@@ -25,7 +25,7 @@ flow:
      IOS_IPA_DIR: "./ipa_dir"
      
     steps:
-      - name: Git Clone
+      - name: Git_Clone
         script: |
           rm -r -f ${IOS_PROJECT_NAME}
           git clone ${FLOW_GIT_URL} ${IOS_PROJECT_NAME}
@@ -35,7 +35,7 @@ flow:
           cd ${IOS_PROJECT_NAME}
           fastlane gym --scheme ${IOS_SCHEME} --export_method ${IOS_EXPORT_METHOD} --output_directory ${IOS_IPA_DIR}
       
-      - name: Get IPA File
+      - name: Get_IPA_File
         script: |
           cd ${IOS_PROJECT_NAME}
           array=$(find ${IOS_IPA_DIR} -name *.ipa 2>&1)
@@ -44,7 +44,7 @@ flow:
             echo $file 
           done
 
-      - name: Unit Test
+      - name: Unit_Test
         script: |
           cd ${IOS_PROJECT_NAME}
           fastlane scan --configuration ${IOS_CONFIGURATION} --scheme ${IOS_SCHEME} --device "iPhone 6" --clean
